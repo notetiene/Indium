@@ -18,6 +18,10 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; Commentary:
+
+;; Minor mode for interacting with a Jade connection in JavaScript buffers.
+
 ;;; Code:
 
 (require 'js2-mode)
