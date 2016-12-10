@@ -275,12 +275,15 @@ same url."
     (jade-repl-emit-console-message (jade-webkit--exception exception) t)))
 
 (defun jade-webkit--handle-debugger-paused (message)
-  (let ((frames (map-nested-elt message '(params callFrames))))
+  (let ((frames (jade-webkit-frames (map-nested-elt message '(params callFrames)))))
     (jade-webkit-set-overlay-message "Paused in Emacs debugger")
-    (jade-debugger-paused (jade-webkit--frames frames))))
+    (map-put jade-connection 'frames frames)
+    (jade-debugger-paused frames)))
 
 (defun jade-webkit--handle-debugger-resumed (_message)
   (jade-webkit-remove-overlay-message)
+  (map-delete jade-connection 'frames)
+  (map-delete jade-connection 'current-frame)
   (jade-debugger-resumed))
 
 (defun jade-webkit--handle-script-parsed (message)

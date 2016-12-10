@@ -20,7 +20,9 @@
 
 ;;; Commentary:
 
-;; Open a scratch buffer with `jade-scratch'.
+;; Jade scratch buffers are similar to Emacs *scratch* buffers, but for
+;; JavaScript evaluation.  Scratch buffers have the same completion as REPL
+;; buffers.  Open a scratch buffer with `jade-scratch'.
 
 ;;; Code:
 

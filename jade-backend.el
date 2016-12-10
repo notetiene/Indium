@@ -162,6 +162,12 @@ Evaluate CALLBACK with the result.")
   "Continue to LOCATION and evaluate CALLBACK if non-nil.
 Location should be an alist with a `column' and `row' key.")
 
+(cl-defgeneric jade-backend-frames (backend)
+  "Return the current list of stack frames (when debugging).")
+
+(cl-defgeneric jade-backend-current-frames (backend)
+  "Return the current stack frames (when debugging).")
+
 (defun jade-backend-object-reference-p (value)
   "Return non-nil if VALUE is a reference to a remote object."
   (map-elt value 'objectid))
