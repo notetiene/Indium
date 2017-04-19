@@ -35,5 +35,20 @@
 
 (require 'indium-gecko)
 
+(defgroup indium-firefox nil
+  "Firefox interaction."
+  :prefix "indium-firefox-"
+  :group 'indium)
+
+(defcustom indium-firefox-executable
+  "firefox"
+  "Firefox executable."
+  :type '(file))
+
+(defcustom indium-firefox-port
+  6000
+  "Firefox remote debugger port."
+  :type '(integer))
+
 (provide 'indium-firefox)
 ;;; indium-firefox.el ends here
