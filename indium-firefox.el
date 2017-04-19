@@ -50,5 +50,23 @@
   "Firefox remote debugger port."
   :type '(integer))
 
+(defun indium-run-firefox (url)
+  "Start Firefox with remote debugging enabled.
+Open URL if provided."
+  (interactive "sUrl: ")
+  (make-process :name "*indium-firefox*"
+                :command (list (indium-firefox--find-executable)
+                               (format "--start-debugger-server %s" indium-firefox-port)
+                               (or url "")))
+  (message "Connecting to Firefox instance...")
+  (indium-firefox--try-connect "127.0.0.1" 10))
+
+(defun indium-firefox--find-executable ()
+  "Find firefox executable using `indium-firefox-executable'."
+  (let ((executable (executable-find indium-firefox-executable)))
+    (unless executable
+      (user-error "Cannot find firefox binary (%s) in PATH" indium-firefox-executable))
+    executable))
+
 (provide 'indium-firefox)
 ;;; indium-firefox.el ends here
